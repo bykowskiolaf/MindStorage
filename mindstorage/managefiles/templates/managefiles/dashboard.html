@@ -9,7 +9,9 @@
     <br><br><br>
     <div class="d-flex align-items-start">
 
-        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <!-- BAR ON LEFT -->
+
+        <div class="nav flex-column nav-pills me-3 m-5" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="min-width: 10vw;">
             
             <button class="nav-link active" id="v-pills-all_files-tab" data-bs-toggle="pill" data-bs-target="#v-pills-all_files" type="button" role="tab" aria-controls="v-pills-all_files" aria-selected="true">
                 Wszystkie Pliki
@@ -24,91 +26,139 @@
         
         <div class="tab-content" id="v-pills-tabContent">
             
-            <div class="tab-pane fade show active" id="v-pills-all_files" role="tabpanel" aria-labelledby="v-pills-all_files-tab">
+            <!-- ALL FILES -->
+            
+            <div class="tab-pane fade show active" id="v-pills-all_files" role="tabpanel" aria-labelledby="v-pills-all_files-tab" style="min-width: 80vw;">
                 {% for file in all_user_files %}
                 <div class="d-flex justify-content-between m-3 p-3 border">
-                    {{ file.owner }} |
-                    <a href="media/{{ file.file }}">
+                    <a href="{{ file.file }}">
                         {{ file.file }}
-                    </a>|
-                    <p>Uploaded: {{ file.uploaded }}</p>|
-                    <p>Modified: {{ file.modified }}</p>|
-                    <p>Trash status: {{file.trash}}</p>|
-                    <p>Favourite status: {{file.favourite}}</p>|
-                    <form action="{% url 'managefiles:file_delete' file.id %}" method="post">
-                        {% csrf_token %}
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
+                    </a>
+                    
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <p>Uploaded: <br> {{ file.uploaded }}</p>
+                            </div>
+                            <div class="col">
+                                <p>Modified: <br> {{ file.modified }}</p>
+                            </div>
+                            <div class="col">
+                                <p>Trash status: <br>
+                                    {% if file.trash %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif%}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>Favourite status: <br>
+                                    {% if file.favourite %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif%}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <form action="{% url 'managefiles:add_to_trash' file.id %}" method="post">
+                    <form class="p-1" action="{% url 'managefiles:add_to_trash' file.id %}" method="post">
                         {% csrf_token %}
                         <button class="btn btn-secondary" type="submit">Add to 🗑️</button>
                     </form>
 
-                    <form action="{% url 'managefiles:favourite' file.id %}" method="post">
+                    <form class="p-1" action="{% url 'managefiles:favourite' file.id %}" method="post">
                         {% csrf_token %}
-                        <button class="btn btn-warning" type="submit">Add to ⭐</button>
+                        {% if file.favourite %}
+                            <button class="btn btn-warning" type="submit">Remove from ⭐</button>
+                        {% else %}
+                            <button class="btn btn-warning" type="submit">Add to ⭐</button>
+                        {% endif%}
                     </form>
                 </div>
-                <hr>
                 {% endfor %}
             </div>
-            <div class="tab-pane fade" id="v-pills-favourites" role="tabpanel" aria-labelledby="v-pills-favourites-tab">
+
+            <!-- FAV FILES -->
+            
+            <div class="tab-pane fade" id="v-pills-favourites" role="tabpanel" aria-labelledby="v-pills-favourites-tab" style="min-width: 80vw;">
                 {% for file in fav_user_files %}
                 <div class="d-flex justify-content-between m-3 p-3 border">
-                    {{ file.owner }} |
-                    <a href="media/{{ file.file }}">
+                    <a href="{{ file.file }}">
                         {{ file.file }}
-                    </a>|
-                    <p>Uploaded: {{ file.uploaded }}</p>|
-                    <p>Modified: {{ file.modified }}</p>|
-                    <p>Trash status: {{file.trash}}</p>|
-                    <p>Favourite status: {{file.favourite}}</p>|
-                    <form action="{% url 'managefiles:file_delete' file.id %}" method="post">
-                        {% csrf_token %}
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
+                    </a>
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <p>Uploaded: <br> {{ file.uploaded }}</p>
+                            </div>
+                            <div class="col">
+                                <p>Modified: <br> {{ file.modified }}</p>
+                            </div>
+                            <div class="col">
+                                <p>Trash status: <br>
+                                    {% if file.trash %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif%}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>Favourite status: <br>
+                                    {% if file.favourite %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif%}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <form action="{% url 'managefiles:add_to_trash' file.id %}" method="post">
+                    <form class="p-1" action="{% url 'managefiles:add_to_trash' file.id %}" method="post">
                         {% csrf_token %}
                         <button class="btn btn-secondary" type="submit">Add to 🗑️</button>
                     </form>
 
-                    <form action="{% url 'managefiles:favourite' file.id %}" method="post">
+                    <form class="p-1" action="{% url 'managefiles:favourite' file.id %}" method="post">
                         {% csrf_token %}
-                        <button class="btn btn-warning" type="submit">Add to ⭐</button>
+                        <button class="btn btn-warning" type="submit">Remove from ⭐</button>
                     </form>
                 </div>
-                <hr>
                 {% endfor %}
             </div>
-            <div class="tab-pane fade" id="v-pills-trash" role="tabpanel" aria-labelledby="v-pills-trash-tab">
+
+            <!-- TRASHED FILES -->
+
+            <div class="tab-pane fade" id="v-pills-trash" role="tabpanel" aria-labelledby="v-pills-trash-tab" style="min-width: 80vw;">
                 {% for file in trash_user_files %}
                 <div class="d-flex justify-content-between m-3 p-3 border">
-                    {{ file.owner }} |
                     <a href="media/{{ file.file }}">
                         {{ file.file }}
-                    </a>|
-                    <p>Uploaded: {{ file.uploaded }}</p>|
-                    <p>Modified: {{ file.modified }}</p>|
-                    <p>Trash status: {{file.trash}}</p>|
-                    <p>Favourite status: {{file.favourite}}</p>|
-                    <form action="{% url 'managefiles:file_delete' file.id %}" method="post">
+                    </a>
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <p>Uploaded: <br> {{ file.uploaded }}</p>
+                            </div>
+                            <div class="col">
+                                <p>Modified: <br> {{ file.modified }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="p-1" action="{% url 'managefiles:file_delete' file.id %}" method="post">
                         {% csrf_token %}
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
 
-                    <form action="{% url 'managefiles:add_to_trash' file.id %}" method="post">
+                    <form class="p-1" action="{% url 'managefiles:add_to_trash' file.id %}" method="post">
                         {% csrf_token %}
-                        <button class="btn btn-secondary" type="submit">Add to 🗑️</button>
-                    </form>
-
-                    <form action="{% url 'managefiles:favourite' file.id %}" method="post">
-                        {% csrf_token %}
-                        <button class="btn btn-warning" type="submit">Add to ⭐</button>
+                        <button class="btn btn-secondary" type="submit">Restore</button>
                     </form>
                 </div>
-                <hr>
                 {% endfor %}
             </div>
         </div>
