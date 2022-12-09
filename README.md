@@ -1,4 +1,4 @@
-# Mindstorage
+# Mindstorage 🧠
 
 ## Instalation
 - `pip3 install -r requirements.txt`
@@ -7,51 +7,26 @@
 - `python3 manage.py createsuperuser`
 - `python3 manage.py runserver`
 
-## MindStorage
+## Roadmap 🚧
 - [ ] Frontend: 
-  - [ ] Login panel consisting of:
-    * [ ] Login form consisting of:
-    *  [ ] Login area
-    *  [ ] Password area
-    *  [ ] Login button
-  - [ ] Tech support button redirecting to tech support panel
+  - [x] Login panel 
+  - [x] Tech support button redirecting to tech support panel
   - [ ] "Forgot your password?" button
   - [ ] Login form must be resistant to brute force attacks
-  - [ ] Tech supprot panel consisting of:
-    * [ ] submissions form consisting of:
-      * [ ] first name 
-      *  [ ] last name 
-      *  [ ] e-mail adress
-      *  [ ] description of a problem 
-      *  [ ] "send submission" button 
-    *  [ ] form must be accessable before the login 
-    *  [ ] form must implement anti spam mechanisms 
-  - [ ] account activasion panel:
+  - [ ] Account Activasion panel:
     * [ ] visible after entering the activation link sent after being invited by  administrator 
     * [ ] cosisting of:
      * [ ] password area 
      * [ ] "repeat the password" area 
      * [ ] "give password" button
-  - [ ] password reset panel 
-   * [ ] accesable after clicking "forgot your password?" button 
-   * [ ] consisting of:
-     * [ ] e-mail adress area
-     * [ ] "reset password" area 
-   * [ ] after clicking "reset password" button, the resseting password link is being sent to given adress 
-   * [ ] after entering the link, redirects to giving new  password screen 
-  - [ ] new password screen:
-   * [ ] accesable after entering the link in an e-mail representing password reseting 
-   * [ ] consisting of:
-     * [ ] password area
-     * [ ] "repeat the password" area 
-     * [ ] "give password" area 
-  - [ ] administrator panel:
+  - [ ] Password reset panel 
+  - [ ] Administrator panel:
    * [ ] after logging in, there is a visible dashboard consisting of:
      * [ ] usefull graphs, for example: statistics, ammount of users ect.
      * [ ] bookmarks
      * [ ] logout button 
      * [ ] settings button 
-  * [ ] tabs:
+  * [ ] Tabs:
        * [ ] users management:
          * [ ] presentation of users and information about them:
            * [ ] first name 
@@ -69,7 +44,6 @@
            * [ ] viewing submissions 
            * [ ] adding notes about the submission 
            * [ ] ability to close the submission 
-    * [ ] ability to logout  
   - [ ] user panel:
     * [ ] after logging in there is a visible "my files" tab 
     * [ ] on the pannel there must be visible:
@@ -92,7 +66,7 @@
   - [ ] each file can be downloaded, deleted, copied, shared (publicly in  the form of a link, within the organization - to a specific person)
   - [ ] ability to create and delete folders 
   - [ ] ability to download and share whole folders as ZIP
-  - [ ] ability to logout 
+  - [x] ability to logout
 - [ ] Backend:
   - [ ] authentication and authorization users 
   - [ ] secure data storage
