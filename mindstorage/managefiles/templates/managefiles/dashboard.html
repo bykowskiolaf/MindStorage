@@ -6,7 +6,6 @@
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Add file +</button>
 </form>
-    <br><br><br>
     <div class="d-flex align-items-start">
 
         <!-- BAR ON LEFT -->
@@ -31,7 +30,7 @@
             <div class="tab-pane fade show active" id="v-pills-all_files" role="tabpanel" aria-labelledby="v-pills-all_files-tab" style="min-width: 80vw;">
                 {% for file in all_user_files %}
                 <div class="d-flex justify-content-between m-3 p-3 border">
-                    <a href="{{ file.file }}">
+                    <a href="media/{{ file.file }}">
                         {{ file.file }}
                     </a>
                     

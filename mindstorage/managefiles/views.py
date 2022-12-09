@@ -1,20 +1,30 @@
-from django.shortcuts import render
+from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import render ,get_object_or_404, redirect
 
 from .models import UserFile
 
-from .forms import AddFileForm
+from .forms import AddFileForm, ContactForm
 
 def welcome_screen(request):
-    return render(request, 'managefiles/home.html')
+    if request.method == "GET":
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data["subject"]
+            from_email = form.cleaned_data["from_email"]
+            message = form.cleaned_data['message']
+            send_mail(subject, message, from_email, ["admin@example.com"])
+            return redirect('managefiles:welcome_screen')
+    return render(request, 'managefiles/home.html', {"form": form})
 
 
-# show all files
+# Show all files
 @login_required
 def dashboard(request):
-    # gets all the user files
+    # Gets all the user files
     user_files = UserFile.objects.all()
     all_user_files = user_files.filter(trash=False)
     fav_user_files = user_files.filter(favourite=True)
@@ -35,6 +45,7 @@ def dashboard(request):
                    'trash_user_files': trash_user_files,
                    'form': form})
 
+# Delete File
 @login_required
 @require_POST
 def file_delete(request, pk):
@@ -42,6 +53,7 @@ def file_delete(request, pk):
     plik.delete()
     return redirect('managefiles:dashboard')
 
+# Add to trash
 @login_required
 @require_POST
 def add_to_trash(request, pk):
@@ -54,6 +66,7 @@ def add_to_trash(request, pk):
     plik.save()
     return redirect('managefiles:dashboard')
 
+# Add to favourites
 @login_required
 @require_POST
 def favourite(request, pk):

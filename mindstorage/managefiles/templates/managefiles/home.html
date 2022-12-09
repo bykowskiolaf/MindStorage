@@ -6,15 +6,96 @@
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 class="display-4 fw-bold lh-1">Mindstorage bezpieczeństwo plików z głową</h1>
-        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <p class="lead">Przechowywanie w chmurze i kopie zapasowe naszej firmy zapewniają bezpieczeństwo danych i dostęp do nich z dowolnego urządzenia w dowolnym miejscu. Mindstorage oferuje różnorodne plany dopasowane do Twoich potrzeb, od osobistych po biznesowe.</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+          <!-- Trigger button for FAQ-->
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold" data-bs-toggle="modal" data-bs-target="#FAQModal">FAQ</button>
+          <!-- Trigger button for support form-->
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Pomoc</button>
         </div>
       </div>
-      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+      <div class="col-lg-4 p-0 overflow-hidden shadow-lg">
           <img class="rounded-lg-3" src="{% static 'img/team.png' %}" alt="" width="400px">
       </div>
     </div>
 </div>
+
+<!-- Support Form -->
+<form action="{% url 'managefiles:welcome_screen' %}" method="post">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Pomoc</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{form.as_p}}
+          {% csrf_token %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+          <button type="submit" class="btn btn-primary">Wyślij</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- FAQ Modal-->
+<!-- Modal -->
+<div class="modal fade" id="FAQModal" tabindex="-1" aria-labelledby="FAQModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="FAQModal">FAQ</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ol>
+        <li><h5>Jakie rodzaje pamięci masowej i rozwiązań do tworzenia kopii zapasowych oferuje Twoja firma?</h5></li>
+        <p>Nasza firma oferuje szereg rozwiązań do przechowywania i tworzenia kopii zapasowych, w tym przechowywanie w chmurze, fizyczne urządzenia pamięci masowej i usługi tworzenia kopii zapasowych poza siedzibą firmy.</p>
+
+        <li><h5>Jak bezpieczne są Twoje usługi przechowywania i tworzenia kopii zapasowych?</h5></li>
+        <p>Bezpieczeństwo jest najwyższym priorytetem dla naszej firmy. Wszystkie nasze usługi przechowywania i tworzenia kopii zapasowych są chronione najnowocześniejszymi protokołami szyfrowania i bezpieczeństwa, aby zapewnić bezpieczeństwo Twoich danych.</p>
+
+        <li><h5>Czy mogę uzyskać dostęp do przechowywanych plików z dowolnego miejsca?</h5></li>
+        <p>Tak, nasze rozwiązania do przechowywania w chmurze umożliwiają dostęp do plików z dowolnego urządzenia z połączeniem internetowym.</p>
+
+        <li><h5>Ile kosztuje usługa przechowywania i tworzenia kopii zapasowych?</h5></li>
+        <p>Nasze ceny różnią się w zależności od rodzaju wybranego rozwiązania do przechowywania i tworzenia kopii zapasowych, a także ilości danych, które musisz przechowywać. Oferujemy elastyczne opcje cenowe dopasowane do Twojego budżetu i potrzeb.</p>
+
+        <li><h5>Jak długo przechowujecie moje pliki kopii zapasowych?</h5></li>
+        <p>Oferujemy szereg opcji przechowywania plików kopii zapasowych, od krótkoterminowych do długoterminowych. Możesz wybrać okres przechowywania, który najlepiej odpowiada Twoim potrzebom.</p>
+
+        <li><h5>Czy mogę przechowywać i tworzyć kopie zapasowe dużych plików, takich jak pliki wideo lub audio?</h5></li>
+        <p>Tak, nasze rozwiązania do przechowywania i tworzenia kopii zapasowych są przeznaczone do obsługi dużych plików, w tym plików wideo i audio.</p>
+
+        <li><h5>Czy mogę przechowywać i tworzyć kopie zapasowe plików z wielu urządzeń?</h5></li>
+        <p>Tak, nasze usługi umożliwiają przechowywanie i tworzenie kopii zapasowych plików z wielu urządzeń, w tym komputerów, smartfonów i tabletów.</p>
+
+        <li><h5>Co się stanie, jeśli będę musiał przywrócić moje pliki?</h5></li>
+        <p>Przywracanie plików jest proste dzięki naszym usługom. Po prostu skontaktuj się z naszym zespołem wsparcia, a pomożemy Ci szybko i łatwo odzyskać pliki.</p>
+
+        <li><h5>Czy mogę udostępniać moje zapisane pliki innym osobom?</h5></li>
+        <p>Tak, nasze usługi umożliwiają udostępnianie przechowywanych plików innym osobom, dając im dostęp do Twojego konta.</p>
+
+        <li><h5>Czy mogę wypróbować twoje usługi, zanim zdecyduję się na subskrypcję?</h5></li>
+        <p>Tak, oferujemy bezpłatny okres próbny naszych usług, więc możesz je wypróbować, zanim zdecydujesz, czy są dla Ciebie odpowiednie.</p>
+      </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 {% endblock content %}
+
