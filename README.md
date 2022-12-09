@@ -21,10 +21,9 @@
      * [ ] "give password" button
   - [ ] Password reset panel 
   - [ ] Administrator panel:
-   * [ ] after logging in, there is a visible dashboard consisting of:
      * [ ] usefull graphs, for example: statistics, ammount of users ect.
      * [ ] bookmarks
-     * [ ] logout button 
+     * [x] logout button 
      * [ ] settings button 
   * [ ] Tabs:
        * [ ] users management:
