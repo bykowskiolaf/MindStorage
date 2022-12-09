@@ -8,8 +8,8 @@
 - `python3 manage.py runserver`
 
 ## Team
-- [Bykowskiolaf](https://github.com/bykowskiolaf)
-- [Laxmymow](https://github.com/laxmymow)
-- [Alex]()
-- [Janusz]()
+- [Bykowskiolaf](https://github.com/bykowskiolaf) - Frontend
+- [Laxmymow](https://github.com/laxmymow) - Backend
+- [Alex]() - Dev/Ops 
+- [Janusz]() - Pm
 
