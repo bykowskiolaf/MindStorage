@@ -1,11 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="d-flex justify-content-center m-5">
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-</form>
-</div>
+
+<link rel="stylesheet" href="{% static 'css/login_css.css' %}">
+
+<section>
+    <div class="form-box">
+        <div class="form-value">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2>Login</h2>
+                <div class="inputbox">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <input type="text" name="username" required>
+                    <label for="">Username</label>
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                </div>
+                <button type="submit">Log in</button>
+                <div class="register">
+                    <p>Don't have a account <a href="#">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
 {% endblock content %}
