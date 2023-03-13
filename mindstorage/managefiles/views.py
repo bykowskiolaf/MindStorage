@@ -25,7 +25,7 @@ def welcome_screen(request):
 @login_required
 def dashboard(request):
     # Gets all the user files
-    user_files = UserFile.objects.all()
+    user_files = UserFile.objects.filter(owner=request.user)
     all_user_files = user_files.filter(trash=False)
     fav_user_files = user_files.filter(favourite=True)
     trash_user_files = user_files.filter(trash=True)
