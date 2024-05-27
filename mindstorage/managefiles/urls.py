@@ -13,5 +13,5 @@ urlpatterns = [
     path('favourite/<int:pk>/', views.favourite, name='favourite'),
 
 ]
-if settings.DEBUG:
+if not settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
